@@ -55,23 +55,32 @@ function findPlayerPosition(dungeon) {
 }
 
 function handleKeyDown(event) {
-  const dungeon = game.dungeon;
-  switch (event.key) {
-    case "ArrowUp":
-      movePlayer(dungeon, 0, -1);
-      break;
-    case "ArrowDown":
-      movePlayer(dungeon, 0, 1);
-      break;
-    case "ArrowLeft":
-      movePlayer(dungeon, -1, 0);
-      break;
-    case "ArrowRight":
-      movePlayer(dungeon, 1, 0);
-      break;
+    const dungeon = game.dungeon;
+    switch (event.key) {
+      case "ArrowUp":
+      case "w":
+      case "W":
+        movePlayer(dungeon, 0, -1);
+        break;
+      case "ArrowDown":
+      case "s":
+      case "S":
+        movePlayer(dungeon, 0, 1);
+        break;
+      case "ArrowLeft":
+      case "a":
+      case "A":
+        movePlayer(dungeon, -1, 0);
+        break;
+      case "ArrowRight":
+      case "d":
+      case "D":
+        movePlayer(dungeon, 1, 0);
+        break;
+    }
+    renderDungeon(dungeon);
   }
-  renderDungeon(dungeon);
-}
+  
 
 const game = {
     dungeon: null,
