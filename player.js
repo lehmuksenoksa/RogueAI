@@ -1,21 +1,26 @@
-export function movePlayer(dungeon, dx, dy) {
-    const currentPosition = findPlayerPosition(dungeon);
-    const [x, y] = currentPosition;
-  
-    const newX = x + dx;
-    const newY = y + dy;
-  
-    if (dungeon[newY][newX] !== "#") {
-      dungeon[y][x] = ".";
-      dungeon[newY][newX] = "@";
+export class Player {
+    constructor() {
+      this.x = null;
+      this.y = null;
     }
-  }
   
-  function findPlayerPosition(dungeon) {
-    for (let y = 0; y < dungeon.length; y++) {
-      for (let x = 0; x < dungeon[y].length; x++) {
-        if (dungeon[y][x] === "@") {
-          return [x, y];
+    getPosition() {
+      return [this.x, this.y];
+    }
+  
+    setPosition(x, y) {
+      this.x = x;
+      this.y = y;
+    }
+  
+    initializePlayer(dungeon) {
+      while (true) {
+        const x = Math.floor(Math.random() * dungeon.width);
+        const y = Math.floor(Math.random() * dungeon.height);
+  
+        if (dungeon.map[y][x] !== "#") {
+          this.setPosition(x, y);
+          break;
         }
       }
     }
